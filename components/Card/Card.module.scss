@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px;
+}
+
+.image {
+  border-radius: 50%;
+}
+
+.wrapper {
+  flex: 1;
+}
+
+.login {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.html_url {
+  margin-top: 8px;
+  font-weight: 400;
+  font-size: 11px;
+}
+
+.bookmark_wrapper {
+  cursor: pointer;
+}
