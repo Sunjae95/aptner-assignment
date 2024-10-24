@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import '@/styles/reset.scss';
 import Header from '@/components/Header';
+import QueryClientProvider from '@/components/QueryClientProvider';
 
 export const metadata: Metadata = {
   title: 'Aptner-assignment',
@@ -16,13 +17,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header
-          items={[
-            { href: '/', label: '사용자 검색' },
-            { href: '/bookmark', label: '북마크 사용자' },
-          ]}
-        />
-        {children}
+        <QueryClientProvider>
+          <Header
+            items={[
+              { href: '/', label: '사용자 검색' },
+              { href: '/bookmark', label: '북마크 사용자' },
+            ]}
+          />
+          {children}
+        </QueryClientProvider>
       </body>
     </html>
   );
