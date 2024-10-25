@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton {
+  background-color: #e0e0e0;
+  animation: loading 1.5s infinite ease-in-out;
+
+  @keyframes loading {
+    0% {
+      background-color: #e0e0e0;
+    }
+    50% {
+      background-color: #f0f0f0;
+    }
+    100% {
+      background-color: #e0e0e0;
+    }
+  }
+}
