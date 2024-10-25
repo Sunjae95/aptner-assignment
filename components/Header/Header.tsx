@@ -15,7 +15,9 @@ interface HeaderProps {
 export default function Header({ items }: HeaderProps) {
   return (
     <header className={styles.container}>
-      <Image alt="logo" src={'/assets/logo.png'} width={100} height={42} priority />
+      <Link href={'/'}>
+        <Image alt="logo" src={'/assets/logo.png'} width={100} height={42} priority />
+      </Link>
       <ul className={styles.wrapper}>
         {items.map(({ label, ...linkProps }) => (
           <li key={`tab-${linkProps.href}`} className={styles.item}>
