@@ -2,10 +2,11 @@
 import React, { useEffect, useRef } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import Icon from '@/components/Icon';
+import useBookmarkList from '@/hooks/useBookmarkList';
 import { getSearchUsers } from '@/actions/user';
+import Icon from '@/components/Icon';
+import Card from '@/components/Card';
 
-import UserList from '../UserList';
 import styles from './MoreUserList.module.scss';
 
 interface MoreUserListProps {
@@ -13,6 +14,7 @@ interface MoreUserListProps {
 }
 
 export default function MoreUserList({ value }: MoreUserListProps) {
+  const { bookmarkList, handleOnChange } = useBookmarkList();
   const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
     queryKey: [value],
     queryFn: ({ pageParam }) => getSearchUsers({ value, page: pageParam }),
@@ -38,7 +40,12 @@ export default function MoreUserList({ value }: MoreUserListProps) {
   return (
     <ul>
       {data?.pages.map((items, i) => (
-        <UserList key={`moreList-${i}`} data={items} />
+        <React.Fragment key={`MoreUserList-${i}`}>
+          {items.map((item) => {
+            const isBookmark = bookmarkList.some(({ id }) => item.id === id);
+            return <Card key={item.id} onClick={handleOnChange(item, isBookmark)} {...item} isBookmark={isBookmark} />;
+          })}
+        </React.Fragment>
       ))}
       {hasNextPage && <div ref={ref} className={styles.moreContainer} />}
       {isFetching && (
