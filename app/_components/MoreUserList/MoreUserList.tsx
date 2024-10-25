@@ -20,6 +20,10 @@ export default function MoreUserList({ value }: MoreUserListProps) {
     queryFn: ({ pageParam }) => getSearchUsers({ value, page: pageParam }),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages, lastPageParam) => (lastPage.length < 30 ? undefined : lastPageParam + 1),
+    throwOnError: (error) => {
+      alert(error.message);
+      return false;
+    },
   });
 
   const ref = useRef<HTMLDivElement | null>(null);
