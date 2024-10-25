@@ -1,23 +1,17 @@
-import Link from 'next/link';
+import SearchArea from './_components/SearchArea';
+import MoreUserList from './_components/MoreUserList';
 
-export default function Home() {
+import styles from './page.module.scss';
+
+export default function Home({ searchParams }: { searchParams: { value: string } }) {
+  const value = searchParams.value ?? '';
+
   return (
-    <main>
-      <ul>
-        <li>
-          <Link href={'/'}>사용자 검색</Link>
-        </li>
-        <li>
-          <Link href={'?tab=bookmark'}>북마크 사용자</Link>
-        </li>
-      </ul>
-      <input placeholder="사용자를 검색해주세요." />
-      <button>검색</button>
-      <ol>
-        <li>유저1</li>
-        <li>유저2</li>
-        <li>유저3</li>
-      </ol>
+    <main className={styles.container}>
+      <div className={styles.wrapper}>
+        <SearchArea defaultValue={value} />
+        <MoreUserList value={value} />
+      </div>
     </main>
   );
 }
