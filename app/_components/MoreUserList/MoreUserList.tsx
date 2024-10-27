@@ -17,9 +17,9 @@ export default function MoreUserList({ value }: MoreUserListProps) {
   const { bookmarkList, handleOnChange } = useBookmarkList();
   const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
     queryKey: [value],
-    queryFn: ({ pageParam }) => getSearchUsers({ value, page: pageParam }),
+    queryFn: ({ pageParam }) => getSearchUsers({ value, page: pageParam, per_page: 20 }),
     initialPageParam: 1,
-    getNextPageParam: (lastPage, allPages, lastPageParam) => (lastPage.length < 30 ? undefined : lastPageParam + 1),
+    getNextPageParam: (lastPage, allPages, lastPageParam) => (lastPage.length < 20 ? undefined : lastPageParam + 1),
     throwOnError: (error) => {
       alert(error.message);
       return false;
